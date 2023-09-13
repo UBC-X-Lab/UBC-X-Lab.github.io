@@ -1,0 +1,65 @@
+.sidebar{
+    height: 100%;
+}
+
+
+#return{
+    height:15%;
+    width:100%;
+}
+
+#returnIcon{
+    position:relative;
+    top:80%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor:pointer;
+}
+
+#Menu{
+    height:30%;
+    width:100%;
+}
+
+#LogoSidebar{
+    
+
+    transform: rotate(-90deg);
+
+
+    /* Legacy vendor prefixes that you probably don't need... */
+
+    /* Safari */
+    -webkit-transform: rotate(-90deg);
+
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+
+    /* IE */
+    -ms-transform: rotate(-90deg);
+
+    /* Opera */
+    -o-transform: rotate(-90deg);
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    height:40%;
+    width:100%;
+}
+
+#LogoSide{
+    position: relative;
+    margin-left: 10%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-family: "Urbanist";
+    letter-spacing: 15px;
+}
+
+.MenuItem{
+    cursor:pointer;
+    font-size: 20px;
+    margin-top: 5%;
+}
+
