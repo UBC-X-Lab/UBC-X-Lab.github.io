@@ -108,6 +108,13 @@ html, body, #root, .App{
     background-color:rgba(49, 138, 219, 0.8);
 }
 
+.dark{
+    background: rgba(8, 6, 26, 1) !important;
+}
+
+.light{
+    background: rgba(187, 253, 253, 0.652) !important;
+}
 .centreText{
     margin: auto;
     position: relative;
@@ -227,10 +234,14 @@ h2{
     }
   }
 
-
+.animateFrameDark{
+    animation-name: FrameAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
 
   
-.animateFrame{
+.animateFrameLight{
     animation-name: FrameAnimation2;
     animation-duration: 1s;
     animation-fill-mode: forwards;
@@ -282,6 +293,26 @@ h2{
   }
 
 
+.fadeOutAnimation{
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+/* The animation code */
+@keyframes fadeOut {
+    from {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 50%;
+    }
+    to {
+        opacity: 0%;
+        display: none;
+    }
+  }
+
 .fadeInAnimationFast{
     animation-name: fadeIn;
     animation-duration: 1s;
@@ -291,6 +322,7 @@ h2{
 /* The animation code */
 @keyframes fadeIn {
     from {
+        display: "block";
         opacity: 0%;
     }
     to {
@@ -475,7 +507,7 @@ h2{
     background-color: white;
     float:left;
     font-family: 'Urbanist';
-    padding: 10px;
+    padding: 2px;
     font-size: 25px;
     border-radius: 10px;
     position:relative;

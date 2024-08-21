@@ -4,7 +4,7 @@ import { IconContext } from "react-icons";
 import { BiChevronLeft, BiSidebar } from "react-icons/bi";
 
 
-class Main extends Component {
+class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.contractDiv = this.contractDiv.bind(this);
@@ -43,7 +43,18 @@ class Main extends Component {
   }
 
   contractDiv = (e) => {
-    console.log(this.state.page);
+
+
+    document.querySelectorAll('.centreText').forEach(function(text){
+        if (text.classList.contains("fadeOutAnimation")){
+            text.classList.remove("fadeOutAnimation");
+        }
+        if (!text.classList.contains("fadeInAnimationFast")){
+            text.classList.add("fadeInAnimationFast");
+        }
+        
+    });
+
     var pageName = this.state.page;
     if (pageName == "people"){
         document.getElementById(this.state.page).classList.add("contractFramePeople");
@@ -60,7 +71,12 @@ class Main extends Component {
     } 
   
     document.getElementById(this.state.page).classList.add("frame");
-    document.getElementById(this.state.page).classList.remove("animateFrame");
+    if (document.getElementById(this.state.page).classList.contains("animateFrameDark")){
+        document.getElementById(this.state.page).classList.remove("animateFrameDark");
+    }
+    if (document.getElementById(this.state.page).classList.contains("animateFrameLight")){
+        document.getElementById(this.state.page).classList.remove("animateFrameLight");
+    }
     document.getElementById(this.state.page).classList.remove("frameSelected");
     document.getElementById("sidebar").style.display = "none";
 
@@ -71,7 +87,23 @@ class Main extends Component {
         if (frame.id != pageName){
             frame.style.display = "block";
             frame.classList.add("fadeInAnimation");
+
+            // const targetDiv = frame.querySelector(".centreText");
+            // targetDiv.classList.add("fadeInAnimation");
         }
+        if (frame.id == "people"){
+            frame.classList.remove("dark");
+        } else if (frame.id == "publications"){
+            frame.classList.remove("dark");
+        } else if (frame.id == "about"){
+            frame.classList.remove("light");
+        } else if (frame.id == "research"){
+            frame.classList.remove("light");
+        } else if (frame.id == "news"){
+            frame.classList.remove("light");
+        } else if (frame.id == "join"){
+            frame.classList.remove("light");
+        } 
     });
     this.props.resetPage();
   }
@@ -88,7 +120,12 @@ class Main extends Component {
 
 
     document.querySelectorAll('.frameSelected').forEach(function(frame) {
-        frame.classList.remove("animateFrame");
+        if (frame.classList.contains("animateFrameDark")){
+            frame.classList.remove("animateFrameDark");
+        }
+        if (frame.classList.contains("animateFrameLight")){
+            frame.classList.remove("animateFrameLight");
+        }
         frame.classList.remove("frameSelected");
         frame.style.display = "none";
         frame.style.opacity = "0";
@@ -243,7 +280,7 @@ class Main extends Component {
           </div>
           <div id = "LogoSidebar">
             <div id = "LogoSide">
-                <h2>X-LAB</h2>
+                <h3>X-LAB</h3>
             </div>
             
           </div>
@@ -252,4 +289,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default Sidebar;

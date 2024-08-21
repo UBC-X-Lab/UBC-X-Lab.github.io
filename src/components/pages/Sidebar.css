@@ -17,6 +17,7 @@
 }
 
 #Menu{
+    padding-top: 30px;
     height:30%;
     width:100%;
 }
@@ -43,7 +44,7 @@
 
     /* Internet Explorer */
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-    height:40%;
+    height:50%;
     width:100%;
 }
 
@@ -63,3 +64,6 @@
     margin-top: 5%;
 }
 
+h3{
+    font-size: 30px;
+}

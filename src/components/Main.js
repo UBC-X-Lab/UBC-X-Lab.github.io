@@ -3,16 +3,20 @@ import './Main.css';
 import { SocialIcon } from 'react-social-icons'
 import Sidebar from './pages/Sidebar';
 
+import People from './pages/People';
+
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
         expanded: false,
         expandedPage: null,
+        showPeople: false
     };
-    this.expandDiv = this.expandDiv.bind(this);
+    
     this.changePage = this.changePage.bind(this);
     this.resetPage = this.resetPage.bind(this);
+    this.expandTheDiv = this.expandTheDiv.bind(this);
   }
 
   componentDidUpdate(){
@@ -37,14 +41,48 @@ class Main extends Component {
     this.setState({expandedPage:page});
   }
 
-  resetPage(page){
+  resetPage(){
     this.setState({expandedPage:null, expanded:false});
   }
 
-  expandDiv = (e) => {
+  expandTheDiv(e){
     if (this.state.expanded){
         return;
     }
+
+    if (e.currentTarget.id == "people"){
+        this.setState({ showPeople: true });
+        // const containerDiv = document.getElementById("people");
+        // const targetDiv = containerDiv.querySelector(".centreText");
+        // targetDiv.classList.add("fadeOutAnimation");
+    }
+    document.querySelectorAll('.centreText').forEach(function(text){
+        if (text.classList.contains("fadeInAnimationFast")){
+            text.classList.remove("fadeInAnimationFast");
+        }
+        if (!text.classList.contains("fadeOutAnimation")){
+            text.classList.add("fadeOutAnimation");
+        }
+        
+    });
+
+
+    
+
+    // change all backgrounds
+    document.querySelectorAll('.frame').forEach(function(frame){
+        if (e.currentTarget.id != frame){
+            if ((frame.id == "people") || (frame.id == "publications")) {
+                frame.classList.add("dark");
+                
+            } else {
+                frame.classList.add("light");
+            }
+
+        
+        }
+    })
+
     document.querySelectorAll('.frame').forEach(function(frame) {
         if (frame.classList.contains("fadeInAnimation")){
             frame.classList.remove("fadeInAnimation");
@@ -52,8 +90,11 @@ class Main extends Component {
         if (frame.classList.contains("frameSelected")){
             frame.classList.remove("frameSelected");
         }
-        if (frame.classList.contains("animateFrame")){
-            frame.classList.remove("animateFrame");
+        if (frame.classList.contains("animateFrameDark")){
+            frame.classList.remove("animateFrameDark");
+        }
+        if (frame.classList.contains("animateFrameLight")){
+            frame.classList.remove("animateFrameLight");
         }
         if (frame.id != e.currentTarget.id){
             frame.style.display = "none";
@@ -61,6 +102,7 @@ class Main extends Component {
         }
 
         if (frame.id == "people"){
+            
             frame.style.marginTop = "1%";
             frame.style.marginLeft = "1%";
             frame.style.height = "58%";
@@ -132,8 +174,12 @@ class Main extends Component {
 
 
     if (document.getElementById(e.currentTarget.id)){
+        if (e.currentTarget.id == "people" || e.currentTarget.id == "publications"){
+            document.getElementById(e.currentTarget.id).classList.add("animateFrameDark");
+        } else {
+            document.getElementById(e.currentTarget.id).classList.add("animateFrameLight");
+        }
         
-        document.getElementById(e.currentTarget.id).classList.add("animateFrame");
         document.getElementById(e.currentTarget.id).classList.add("frameSelected");
         if (document.getElementById(e.currentTarget.id).classList.contains("frame")){
             document.getElementById(e.currentTarget.id).classList.remove("frame");
@@ -172,12 +218,13 @@ class Main extends Component {
         <div id = "sidebar">
             <Sidebar page={this.state.expandedPage} changePage = {this.changePage} resetPage = {this.resetPage}/>
         </div>
-        <div id = "people" className = "frame" onClick={(e) => this.expandDiv(e)} >
+        <div id = "people" className = "frame" onClick={(e) => this.expandTheDiv(e)} >
             <div className = {"centreText whiteText"}>
                 <h1>People</h1>
             </div>
+            {this.state.showPeople && <People />}
         </div>
-        <div id = "publications" className = "frame" onClick={(e) => this.expandDiv(e)}>
+        <div id = "publications" className = "frame" onClick={(e) => this.expandTheDiv(e)}>
             <div className = {"centreText whiteText"}>
                 <h1>Publications</h1>
             </div>
@@ -203,22 +250,22 @@ class Main extends Component {
             
 
         </div>
-        <div id = "about" className = "frame" onClick={(e) => this.expandDiv(e)}>
+        <div id = "about" className = "frame" onClick={(e) => this.expandTheDiv(e)}>
             <div className = {"centreText blackText"}>
                 <h1>About Us</h1>
             </div>
         </div>
-        <div id = "research" className = "frame" onClick={(e) => this.expandDiv(e)}>
+        <div id = "research" className = "frame" onClick={(e) => this.expandTheDiv(e)}>
             <div className = {"centreText blackText"}>
                 <h1>Research</h1>
             </div>
         </div>
-        <div id = "join" className = "frame" onClick={(e) => this.expandDiv(e)}>
+        <div id = "join" className = "frame" onClick={(e) => this.expandTheDiv(e)}>
             <div className = {"centreText blackText"}>
                 <h1>Get Connected!</h1>
             </div>
         </div>
-        <div id = "news" className = "frame" onClick={(e) => this.expandDiv(e)}>
+        <div id = "news" className = "frame" onClick={(e) => this.expandTheDiv(e)}>
             <div id = "newsWrapper">
                 <div id = "dateBlock"> Papers </div>
                 <div id = "newsBlock"> 9-15-2023 | Michael submitted 3 papers to CHI. The papers were about games and stuff. Congratulations Michael on submitting his papers!! Blah blahb alhbababababab ababa ababsblahb </div>
